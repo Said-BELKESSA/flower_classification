@@ -21,4 +21,26 @@ Cette compétition a été créée par Udacity pour avoir un classement ( offici
 
 3/- Astuces:
 * Cyclic Learning Rate ( CLR ) https://arxiv.org/abs/1506.01186
-* ![image](https://user-images.githubusercontent.com/57968291/118370100-6cd48e00-b5a6-11eb-8a92-9ca44ba07d3d.png)
+![image](https://user-images.githubusercontent.com/57968291/118370100-6cd48e00-b5a6-11eb-8a92-9ca44ba07d3d.png)
+
+Le CLR est un technique qui permet de trouver le meilleur Learning rate :
+
+1- On définit le minimum ou base de notre Learning rate appelé : base_lr
+
+2- On définit le maximum de notre Learning rate appelé : max_lr
+
+3- On fait osciller le Learning Rate entre base_lr et max_lr jusqu'à ce que la loss explose
+![image](https://user-images.githubusercontent.com/57968291/118370122-8f66a700-b5a6-11eb-81f7-f2ff313fe11a.png)
+
+* Lookahead K steps forward, 1 step Back https://arxiv.org/pdf/1907.08610.pdf
+Le Lookahead est un optimizer pour le Stochastic Gradient Descente ( SGD ) dans notre cas qui permet d'améliorer la stabilité de l'apprentissage avec un cout en mémoire et de computation négligeables :
+
+1- On initialise nos poids comme d'habitude pour le SGD et on lui attribue la characteristique de "slow_weight" ou poids lent
+
+2- On fait k steps ou epochs avec SGD en utilisant des "fast_weights" ou poids rapide
+
+![image](https://user-images.githubusercontent.com/57968291/118370150-ab6a4880-b5a6-11eb-81ad-6d3ab6b12bc2.png)
+
+3- On fait une interpolation linéaire de l'espace de paramètres des fast_weights
+![image](https://user-images.githubusercontent.com/57968291/118370157-b7eea100-b5a6-11eb-8a3a-4ed43cb62e2b.png)
+On repète autant de fois que l'on décide
